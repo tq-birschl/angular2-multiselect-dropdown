@@ -2,13 +2,13 @@
     <div class="selected-list" #selectedList>
         <div class="c-btn" (click)="toggleDropdown($event)" [ngClass]="{'disabled': settings.disabled}" [attr.tabindex]="0">
 
-            <span *ngIf="selectedItems?.length == 0">{{settings.text}}</span>
+            <span *ngIf="selectedItems?.length == 0 && !settings.fixedPlaceholder">{{settings.text}}</span>
             <span *ngIf="settings.singleSelection && !badgeTempl">
                 <span *ngFor="let item of selectedItems;trackBy: trackByFn.bind(this);">
                     {{item[settings.labelKey]}}
                 </span>
             </span>
-            <span class="c-list" *ngIf="selectedItems?.length > 0 && settings.singleSelection && badgeTempl ">
+            <span class="c-list" *ngIf="selectedItems?.length > 0 && settings.singleSelection && badgeTempl && !settings.fixedPlaceholder">
                 <div class="c-token" *ngFor="let item of selectedItems;trackBy: trackByFn.bind(this);let k = index">
                     <span *ngIf="!badgeTempl" class="c-label">{{item[settings.labelKey]}}</span>
 
@@ -20,7 +20,7 @@
                     </span>
                 </div>
             </span>
-            <div class="c-list" *ngIf="selectedItems?.length > 0 && !settings.singleSelection">
+            <div class="c-list" *ngIf="selectedItems?.length > 0 && !settings.singleSelection && !settings.fixedPlaceholder">
                 <div class="c-token" *ngFor="let item of selectedItems;trackBy: trackByFn.bind(this);let k = index" [hidden]="k > settings.badgeShowLimit-1">
                     <span *ngIf="!badgeTempl" class="c-label">{{item[settings.labelKey]}}</span>
                     <span *ngIf="badgeTempl" class="c-label">
@@ -30,6 +30,13 @@
                         <c-icon [name]="'remove'"></c-icon>
                     </span>
                 </div>
+            </div>
+            <div class="c-list" *ngIf="settings.fixedPlaceholder">
+                <div class="c-token">
+                     <span class="c-label">
+                          <div class="fixedPlaceholder">{{settings.fixedPlaceholder}}</div>
+                     </span>
+                 </div>
             </div>
             <span class="countplaceholder" *ngIf="selectedItems?.length > settings.badgeShowLimit">+{{selectedItems?.length - settings.badgeShowLimit }}</span>
             <span class="c-remove clear-all" *ngIf="settings.clearAll && selectedItems?.length > 0 && !settings.disabled" (click)="clearSelection($event);$event.stopPropagation()">
