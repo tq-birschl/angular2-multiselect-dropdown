@@ -2318,6 +2318,14 @@ class AngularMultiSelect {
                     this.searchInput.nativeElement.focus();
                 }), 0);
             }
+            if (this.settings.searchAutofocus && !this.searchInput && this.settings.enableSearchFilter && this.searchTempl) {
+                setTimeout((/**
+                 * @return {?}
+                 */
+                () => {
+                    this._elementRef.nativeElement.getElementsByClassName("list-filter")[0].getElementsByTagName("input")[0].focus();
+                }), 0);
+            }
             this.onOpen.emit(true);
         }
         else {
