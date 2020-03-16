@@ -15,6 +15,7 @@ export declare class AngularMultiSelect implements OnInit, ControlValueAccessor,
     settings: DropdownSettings;
     loading: boolean;
     onSelect: EventEmitter<any>;
+    onSearch: EventEmitter<any>;
     onDeSelect: EventEmitter<any>;
     onSelectAll: EventEmitter<Array<any>>;
     onDeSelectAll: EventEmitter<Array<any>>;

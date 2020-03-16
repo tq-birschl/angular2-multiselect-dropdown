@@ -2064,6 +2064,7 @@
             this.cdr = cdr;
             this.ds = ds;
             this.onSelect = new core.EventEmitter();
+            this.onSearch = new core.EventEmitter();
             this.onDeSelect = new core.EventEmitter();
             this.onSelectAll = new core.EventEmitter();
             this.onDeSelectAll = new core.EventEmitter();
@@ -2868,6 +2869,7 @@
             else if (cnt > 0 && this.filterLength != cnt) {
                 this.isFilterSelectAll = false;
             }
+            this.onSearch.emit(this.filter);
             this.cdr.detectChanges();
         };
         /**
@@ -3301,6 +3303,7 @@
             settings: [{ type: core.Input }],
             loading: [{ type: core.Input }],
             onSelect: [{ type: core.Output, args: ['onSelect',] }],
+            onSearch: [{ type: core.Output, args: ['onSearch',] }],
             onDeSelect: [{ type: core.Output, args: ['onDeSelect',] }],
             onSelectAll: [{ type: core.Output, args: ['onSelectAll',] }],
             onDeSelectAll: [{ type: core.Output, args: ['onDeSelectAll',] }],

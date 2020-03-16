@@ -2065,6 +2065,7 @@ var AngularMultiSelect = /** @class */ (function () {
         this.cdr = cdr;
         this.ds = ds;
         this.onSelect = new EventEmitter();
+        this.onSearch = new EventEmitter();
         this.onDeSelect = new EventEmitter();
         this.onSelectAll = new EventEmitter();
         this.onDeSelectAll = new EventEmitter();
@@ -2869,6 +2870,7 @@ var AngularMultiSelect = /** @class */ (function () {
         else if (cnt > 0 && this.filterLength != cnt) {
             this.isFilterSelectAll = false;
         }
+        this.onSearch.emit(this.filter);
         this.cdr.detectChanges();
     };
     /**
@@ -3302,6 +3304,7 @@ var AngularMultiSelect = /** @class */ (function () {
         settings: [{ type: Input }],
         loading: [{ type: Input }],
         onSelect: [{ type: Output, args: ['onSelect',] }],
+        onSearch: [{ type: Output, args: ['onSearch',] }],
         onDeSelect: [{ type: Output, args: ['onDeSelect',] }],
         onSelectAll: [{ type: Output, args: ['onSelectAll',] }],
         onDeSelectAll: [{ type: Output, args: ['onDeSelectAll',] }],
