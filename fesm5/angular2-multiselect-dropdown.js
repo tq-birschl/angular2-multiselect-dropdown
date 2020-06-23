@@ -57,7 +57,7 @@ var ClickOutsideDirective = /** @class */ (function () {
     ]; };
     ClickOutsideDirective.propDecorators = {
         clickOutside: [{ type: Output }],
-        onClick: [{ type: HostListener, args: ['document:click', ['$event', '$event.target'],] }, { type: HostListener, args: ['document:touchstart', ['$event', '$event.target'],] }]
+        onClick: [{ type: HostListener, args: ['document:mousedown', ['$event', '$event.target'],] }, { type: HostListener, args: ['document:touchstart', ['$event', '$event.target'],] }]
     };
     return ClickOutsideDirective;
 }());
